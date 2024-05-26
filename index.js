@@ -16,18 +16,8 @@ mongoose.connect(process.env.DB_CONNECTION)
 .catch((err) => {console.log(`Connection to db failed: ${err}`)})
 
 //routes for questions
-app.get('/questions/:category', async (req, res) => {
-    try{
-        const questions = await Question.find({category: req.params.category}) //find all questions with the category that was passed in the request
-        res.status(200).json(questions)//send the questions as a json object
-    } catch(err){
-        res.status(500).json({message: err.message}) //send a status code and a message if an error occurs
-
-    }
-})
-
+//GET /questions/random - get a random question based on the category 
 app.get('/questions/random', async (req, res) => {
-    console.log(req.query) 
     const { category } = req.query //get the category from the query parameters
     console.log('This is the category: ', category) //log the category to the console 
     try{
@@ -47,6 +37,16 @@ app.get('/questions/random', async (req, res) => {
 
 })
 
+//routes for questions
+app.get('/questions/:category', async (req, res) => {
+    try{
+        const questions = await Question.find({category: req.params.category}) //find all questions with the category that was passed in the request
+        res.status(200).json(questions)//send the questions as a json object
+    } catch(err){
+        res.status(500).json({message: err.message}) //send a status code and a message if an error occurs
+
+    }
+})
 
 //routes for tshirts (this was for learning purposes)
 app.get('/tshirt', (req, res) => { //run this function when the route is requested 
