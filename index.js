@@ -27,6 +27,7 @@ app.get('/questions/:category', async (req, res) => {
 })
 
 app.get('/questions/random', async (req, res) => {
+    console.log(req.query) 
     const { category } = req.query //get the category from the query parameters
     console.log('This is the category: ', category) //log the category to the console 
     try{
