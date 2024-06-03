@@ -37,7 +37,7 @@ app.get('/questions/random', async (req, res) => {
 
 })
 
-//routes for questions
+//Route to get all questions based on a category 
 app.get('/questions/:category', async (req, res) => {
     try{
         const questions = await Question.find({category: req.params.category}) //find all questions with the category that was passed in the request
@@ -47,6 +47,9 @@ app.get('/questions/:category', async (req, res) => {
 
     }
 })
+
+//make a route for trivia questions 
+
 
 //routes for tshirts (this was for learning purposes)
 app.get('/tshirt', (req, res) => { //run this function when the route is requested 
